@@ -5,7 +5,10 @@ import 'package:testing/screen/register.dart';
 import '../main.dart';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _LoginState createState() => _LoginState();
 }
 
@@ -52,7 +55,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                 child: Column(
                   children: [
                     Container(
@@ -61,7 +64,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
-                          color: Color(0xFF656464),
+                          color: const Color(0xFF656464),
                           width: 0.5,
                         ),
                       ),
@@ -98,7 +101,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF848383),
                             fontWeight: FontWeight.w600,
                           ),
@@ -125,7 +128,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
-                          color: Color(0xFF656464),
+                          color: const Color(0xFF656464),
                           width: 0.5,
                         ),
                       ),
@@ -133,7 +136,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                         controller: passwordcontroller,
                         obscureText: !passwordVisibility,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 18),
+                          contentPadding: const EdgeInsets.only(top: 18),
                           hintText: 'Password',
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
@@ -167,7 +170,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                               passwordVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                              color: Color(0xFF757575),
+                              color: const Color(0xFF757575),
                               size: 22,
                             ),
                           ),
@@ -185,7 +188,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Material(
                   child: GestureDetector(
                     onTap: () async {
@@ -226,13 +229,13 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Material(
                   child: GestureDetector(
                     onTap: () async {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                        return Signup();
+                        return const Signup();
                       }));
                     },
                     child: Container(
@@ -286,10 +289,11 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
       try {
         final user = await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailcontroller.text, password: passwordcontroller.text);
-        if (user != null) {
+        // ignore: unnecessary_null_comparison
+        if (user.user!.uid != null) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
-            return MyHomePage();
+            return const MyHomePage();
           }), (route) => false);
         } else {
           return showDialog(

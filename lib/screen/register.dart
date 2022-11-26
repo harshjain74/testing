@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:testing/main.dart';
 
 class Signup extends StatefulWidget {
+  const Signup({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _SignupState createState() => _SignupState();
 }
 
@@ -66,7 +69,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
-                          color: Color(0xFF656464),
+                          color: const Color(0xFF656464),
                           width: 0.5,
                         ),
                       ),
@@ -121,7 +124,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                 child: Column(
                   children: [
                     Container(
@@ -130,7 +133,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5),
                         border: Border.all(
-                          color: Color(0xFF656464),
+                          color: const Color(0xFF656464),
                           width: 0.5,
                         ),
                       ),
@@ -138,7 +141,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                         controller: passwordcontroller,
                         obscureText: !passwordVisibility,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: 15),
+                          contentPadding: const EdgeInsets.only(top: 15),
                           hintText: 'Password',
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
@@ -172,7 +175,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                               passwordVisibility
                                   ? Icons.visibility_outlined
                                   : Icons.visibility_off_outlined,
-                              color: Color(0xFF757575),
+                              color: const Color(0xFF757575),
                               size: 22,
                             ),
                           ),
@@ -190,7 +193,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: Material(
                   child: GestureDetector(
                     onTap: () async {
@@ -251,12 +254,11 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
         assert(user.user!.uid == currentUser!.uid);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) {
-          return MyHomePage();
+          return const MyHomePage();
         }), (route) => false);
       }
       // ignore: empty_catches
     } on FirebaseAuthException catch (e) {
-      print(e);
       if (e.code == "weak-password") {
         return showDialog(
             context: context,
