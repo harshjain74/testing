@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:testing/screen/register.dart';
 
 import '../main.dart';
+import 'Imageupload.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -293,7 +294,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
         if (user.user!.uid != null) {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
-            return const MyHomePage();
+            return const ImageUpload();
           }), (route) => false);
         } else {
           return showDialog(
@@ -305,6 +306,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               });
         }
       } on FirebaseAuthException catch (e) {
+        print(e);
         if (e.code == 'user-not-found') {
           return showDialog(
               context: context,
