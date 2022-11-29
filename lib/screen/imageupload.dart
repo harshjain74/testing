@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testing/screen/login.dart';
 
 class ImageUpload extends StatefulWidget {
@@ -16,6 +17,8 @@ class ImageUpload extends StatefulWidget {
 class _ImageUploadState extends State<ImageUpload> {
   logout() async {
     await FirebaseAuth.instance.signOut();
+    // prefs.setBool("isuserlogin", false);
+    prefs.remove("isuserlogin");
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (BuildContext context) {
       return const Login();
@@ -24,9 +27,14 @@ class _ImageUploadState extends State<ImageUpload> {
 
   var _firebase;
 
+  late SharedPreferences prefs;
+
   @override
   void initState() {
     super.initState();
+    SharedPreferences.getInstance().then((value) {
+      prefs = value;
+    });
     _firebase = FirebaseFirestore.instance.collection("ImageStore");
   }
 

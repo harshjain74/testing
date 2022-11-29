@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:testing/screen/imageupload.dart';
 import 'package:testing/screen/register.dart';
-
-import '../main.dart';
-import 'Imageupload.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -25,9 +24,27 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
   bool phonekeyboardvisible = false;
   bool isshowprogressindicator = false;
 
+  late SharedPreferences prefs;
+
+  checklogin() async {
+    var userlogin = prefs.getBool("isuserlogin") ?? false;
+
+    if (userlogin) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (BuildContext context) {
+        return ImageUpload();
+      }), (route) => false);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    SharedPreferences.getInstance().then((value) {
+      prefs = value;
+      checklogin();
+    });
+
     emailcontroller = TextEditingController();
     passwordcontroller = TextEditingController();
   }
@@ -292,6 +309,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
             email: emailcontroller.text, password: passwordcontroller.text);
         // ignore: unnecessary_null_comparison
         if (user.user!.uid != null) {
+          prefs.setBool("isuserlogin", true);
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (BuildContext context) {
             return const ImageUpload();

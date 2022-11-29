@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:testing/main.dart';
-
 import 'Imageupload.dart';
 
 class Signup extends StatefulWidget {
@@ -254,6 +252,7 @@ class _SignupState extends State<Signup> with TickerProviderStateMixin {
             email: emailcontroller.text, password: passwordcontroller.text);
         final currentUser = FirebaseAuth.instance.currentUser;
         assert(user.user!.uid == currentUser!.uid);
+
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) {
           return const ImageUpload();
