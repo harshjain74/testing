@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testing/screen/imageupload.dart';
 import 'package:testing/screen/register.dart';
 
+import 'CarouselScreen.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -32,7 +34,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     if (userlogin) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) {
-        return ImageUpload();
+        return CarouselScreen();
       }), (route) => false);
     }
   }
