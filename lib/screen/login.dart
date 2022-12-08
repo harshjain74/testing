@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testing/screen/imageupload.dart';
 import 'package:testing/screen/register.dart';
-import 'GetXPackage.dart';
+import 'ProviderClassScreens.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
