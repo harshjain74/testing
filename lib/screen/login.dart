@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:testing/screen/imageupload.dart';
 import 'package:testing/screen/register.dart';
-
-import 'CarouselScreen.dart';
+import 'GetXPackage.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -34,7 +33,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     if (userlogin) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) {
-        return CarouselScreen();
+        return FirstScreen();
       }), (route) => false);
     }
   }
