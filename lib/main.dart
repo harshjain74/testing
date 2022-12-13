@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing/provider/prov.dart';
+import 'package:testing/screen/HttpScreen.dart';
 import 'package:testing/screen/ProviderClassScreens.dart';
 import 'package:testing/screen/cachednetworkscreen.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: CachedNetworkScreen(),
+        home: HttpScreen(),
       ),
     );
   }
