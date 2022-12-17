@@ -5,6 +5,7 @@ import 'package:testing/provider/prov.dart';
 import 'package:testing/screen/HttpScreen.dart';
 import 'package:testing/screen/ProviderClassScreens.dart';
 import 'package:testing/screen/cachednetworkscreen.dart';
+import 'package:testing/screen/modelscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: HttpScreen(),
+        home: ModelScreen(),
       ),
     );
   }
